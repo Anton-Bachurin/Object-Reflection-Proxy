@@ -1,26 +1,18 @@
 // TODO: write your code here
-import sum from './basic';
 
-console.log('worked');
+export const person = {name: 'мечник', health: 10, level: 2, attack: 80, defence: 40};
 
-console.log(sum([1, 2]));
+export const order = ['name', 'level'];
 
-export function characterCondition(character) {
-  if (character.health > 50) {
-    return 'healthy';
-  } else if (character.health > 14) {
-    return 'wounded';
-  } else {
-    return 'critical';
+export const orderedPerson = [];
+
+export function orderByProps(obj) {
+  for (prop in obj) {
+    if (prop === 'name' || prop === 'level') {
+      orderedPerson.push(`key: ${prop}, value: ${obj[prop]}`)
+    }
   }
 }
 
-export const characters = [
-  {name: 'мечник', health: 10},
-  {name: 'маг', health: 100},
-  {name: 'лучник', health: 80},
-]
-
-export function sorting(items) {
-  return items.sort((a, b) => b.health - a.health);
-}
+orderByProps(person);
+console.log(orderedPerson);
