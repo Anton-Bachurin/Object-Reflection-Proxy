@@ -6,13 +6,19 @@ export const order = ['name', 'level'];
 
 export const orderedPerson = [];
 
-export function orderByProps(obj) {
-  for (prop in obj) {
-    if (prop === 'name' || prop === 'level') {
-      orderedPerson.push(`key: ${prop}, value: ${obj[prop]}`)
-    }
-  }
-}
+export  function orderByProps(obj) {
+          for (prop in obj) {
+            for (let i = 0; i < order.length; i++) {
+              if (prop === order[i]) {
+                orderedPerson.push(`key: ${prop}, value: ${obj[prop]}`);
+              }
 
+              if (prop !== order[i]) {
+                function compareArguments()
+              }
+            }
+          }
+        }
+  
 orderByProps(person);
 console.log(orderedPerson);
