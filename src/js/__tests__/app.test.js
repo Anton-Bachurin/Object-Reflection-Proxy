@@ -1,41 +1,14 @@
-import { characterCondition, characters, sorting } from '../app';
+import { order, orderByProps } from '../app';
 
-test ('character is healthy', () => {
-  const magician = {
-    name: 'маг',
-    health: 90
-  }
+test('Правильно сортируется персонаж', () => {
+  const archer = {attack: 50, level: 3, name: 'лучник', defence: 45, health: 25};
+  const sortedArcher = [
+    { key: 'name', value: 'лучник' },
+    { key: 'level', value: 3 },
+    { key: 'attack', value: 50 },
+    { key: 'defence', value: 45 },
+    { key: 'health', value: 25 },
+  ];
 
-  let result = characterCondition(magician);
-  expect(result).toBe('healthy');
+  expect(orderByProps(archer, order)).toEqual(sortedArcher);
 });
-
-test ('character is wounded', () => {
-    const archer = {
-      name: 'стрелок',
-      health: 43
-    }
-  
-    let result = characterCondition(archer);
-    expect(result).toBe('wounded');
-  });
-
-  test ('character is critical', () => {
-    const swordsman = {
-      name: 'мечник',
-      health: 2
-    }
-  
-    let result = characterCondition(swordsman);
-    expect(result).toBe('critical');
-  });
-
-  test ('sorting is correct', () => {
-    const sortedCharacters = [
-      {name: 'маг', health: 100},
-      {name: 'лучник', health: 80},
-      {name: 'мечник', health: 10},
-    ]
-
-    expect(sortedCharacters).toEqual(sorting(characters))
-  });

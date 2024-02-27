@@ -3,31 +3,57 @@ export const person = {name: 'мечник', health: 10, level: 2, attack: 80, d
 
 export const order = ['name', 'level'];
 
-export const orderedPerson = [];
+export function orderByProps(obj, order) { 
+          const orderedPerson = [];
+          const keys = Object.keys(obj).sort();
 
-export function orderByProps(obj) { 
-          const keys = Object.keys(obj);
-          function pushProps(arr) {         
-            for (prop in obj) {
-              for (let i = 0; i < arr.length; i++) {
-                if (prop === arr[i]) {
-                  orderedPerson.push(`key: ${prop}, value: ${obj[prop]}`);
-                }  
-              }
+          for (const key of order) {
+            if (obj.hasOwnProperty(key)) {
+              orderedPerson.push({ key, value: obj[key]});
             }
           }
- 
-         pushProps(order);
- 
-         const result = keys.filter(key => !order.includes(key));
-         const sortedResult = result.sort();
- 
-         pushProps(sortedResult);
-         return orderedPerson;
-
+          
+          for (const key of keys) {
+            if (!order.includes(key)) {
+              orderedPerson.push({ key, value: obj[key] });
+            }
+          }
+          return orderedPerson;
         }
+
+person.special = [
+  {
+    id: 8,
+    name: 'Двойной выстрел',
+    icon: 'http://...',
+    description: 'Двойной выстрел наносит двойной урон'
+  },
+  {
+    id: 9,
+    name: 'Нокаутирующий удар',
+    icon: 'http://...'
+  }
+]
+
+const { special } = person;
+
+export function specialProps(obj) {
+        const specialAttacks = [];
+        for (const key of obj) {
+          specialAttacks.push({
+            id: key.id,
+            name: key.name,
+            icon: key.icon,
+            description: key.description
+          });
+
+          return specialAttacks;
+        }
+        }
+
+console.log(specialProps(special));
         
-console.log(orderByProps(person));
+
 
 
 
