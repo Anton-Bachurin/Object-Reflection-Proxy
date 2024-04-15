@@ -46,10 +46,13 @@ export function specialProps(obj) {
             icon: key.icon,
             description: key.description
           });
+        }
 
-          return specialAttacks;
+        if (specialAttacks.description === undefined) {
+          specialAttacks.description = 'Описание недоступно';
         }
-        }
+        return specialAttacks;
+      }
 
 console.log(specialProps(special));
         
